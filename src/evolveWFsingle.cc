@@ -8,7 +8,7 @@
 // [[Rcpp::plugins(cpp11)]]
 
 //' Evolve a single population under multiplicative fitness and arbitrary changes in N
-//' @param pop An object of type WFsingle
+//' @param N0 The initial population size
 //' @param mu_n The neutral mutation rate (per gamete per generation)
 //' @param mu_n The mutation rate to selected mutations (per gamete per generation)
 //' @param s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)
