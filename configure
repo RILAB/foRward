@@ -3683,6 +3683,49 @@ fi
 done
 
 
+ac_fn_cxx_check_header_mongrel "$LINENO" "boost/container/vector.hpp" "ac_cv_header_boost_container_vector_hpp" "$ac_includes_default"
+if test "x$ac_cv_header_boost_container_vector_hpp" = xyes; then :
+
+else
+  as_fn_error $? "boost/container/vector.hpp not found" "$LINENO" 5
+fi
+
+
+ac_fn_cxx_check_header_mongrel "$LINENO" "boost/container/list.hpp" "ac_cv_header_boost_container_list_hpp" "$ac_includes_default"
+if test "x$ac_cv_header_boost_container_list_hpp" = xyes; then :
+
+else
+  as_fn_error $? "boost/container/list.hpp not found" "$LINENO" 5
+fi
+
+
+as_ac_Header=`$as_echo "ac_cv_header_boost/pool/pool_alloc.hpp>" | $as_tr_sh`
+ac_fn_cxx_check_header_mongrel "$LINENO" "boost/pool/pool_alloc.hpp>" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+
+else
+  as_fn_error $? "boost/pool/pool_alloc.hpp>" "$LINENO" 5
+fi
+
+
+as_ac_Header=`$as_echo "ac_cv_header_boost/unordered_set.hpp>" | $as_tr_sh`
+ac_fn_cxx_check_header_mongrel "$LINENO" "boost/unordered_set.hpp>" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+
+else
+  as_fn_error $? "boost/unordered_set.hpp>" "$LINENO" 5
+fi
+
+
+as_ac_Header=`$as_echo "ac_cv_header_boost/functional/hash.hpp>" | $as_tr_sh`
+ac_fn_cxx_check_header_mongrel "$LINENO" "boost/functional/hash.hpp>" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+
+else
+  as_fn_error $? "boost/functional/hash.hpp>" "$LINENO" 5
+fi
+
+
 ac_fn_cxx_check_header_mongrel "$LINENO" "boost/interprocess/sync/file_lock.hpp" "ac_cv_header_boost_interprocess_sync_file_lock_hpp" "$ac_includes_default"
 if test "x$ac_cv_header_boost_interprocess_sync_file_lock_hpp" = xyes; then :
 
