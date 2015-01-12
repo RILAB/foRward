@@ -1,1 +1,5 @@
 exportPattern("^[^\\.]")
+importFrom(Rcpp,Module)
+importFrom(Rcpp,evalCpp)
+importFrom(Rcpp,loadModule)
+useDynLib(foRward, .registration=TRUE)
