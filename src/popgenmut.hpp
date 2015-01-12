@@ -1,3 +1,5 @@
+#ifndef __POPGENMUT_HPP__
+#define __POPGENMUT_HPP__
 /*
   This file defines the type of mutation used in a typical popgen simulation.
   s = selection coefficient
@@ -32,3 +34,4 @@ struct popgenmut : public KTfwd::mutation_base
     //For efficiency, try not to initialize the data here!
   }
 };
+#endif

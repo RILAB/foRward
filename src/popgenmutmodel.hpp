@@ -1,3 +1,5 @@
+#ifndef __FORWARD_POPGENMUTMODEL_HPP__
+#define __FORWARD_POPGENMUTMODEL_HPP__
 /*
   Generate popgenmuts under the infinitely-many sites mutation schemt
  */
@@ -41,3 +43,5 @@ struct popgen_mutation_model
     return result_type(pos,1,true,0.,0.,ttl_generations);
   }
 };
+
+#endif
