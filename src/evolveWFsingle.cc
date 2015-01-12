@@ -99,6 +99,9 @@ void evolveWFsingle( SEXP pop,
 					  */
 					  std::bind(KTfwd::mutation_remover(),std::placeholders::_1,0,2*nextN));
       KTfwd::remove_fixed_lost(&ppop->mutations,&ppop->fixations,&ppop->fixation_times,&ppop->mut_lookup,generation,2*nextN);
+
+      //update current pop size
+      ppop->N = nextN;
     }
 }
 
