@@ -17,12 +17,15 @@ struct popgen_mutation_model
 				 lookup_table_type * lookup,
 				 const bool dist_effects = false) const
   {
+    //Use hash to make sure that new mutation position does not currently exist in pop
     double pos = gsl_rng_uniform(r);
     while(lookup->find(pos) != lookup->end())
       {
 	pos = gsl_rng_uniform(r);
       }
     lookup->insert(pos);
+
+    //Check if new mutation is selected or neutral
     if( gsl_rng_uniform(r) <= ud/(ud+un) )
       {
 	if( ! dist_effects )
@@ -34,7 +37,7 @@ struct popgen_mutation_model
 	    return result_type(pos,1,false,gsl_ran_exponential(r,s),h,ttl_generations);
 	  }
       }
-    //return a neutral mutation
+    //If not selected, return a neutral mutation
     return result_type(pos,1,true,0.,0.,ttl_generations);
   }
 };
