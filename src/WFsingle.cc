@@ -1,5 +1,7 @@
 #include <Rcpp.h>
-#include <singlepop.hpp>
+#include <WFsingle.hpp>
+
+// [[Rcpp::plugins(cpp11)]]
 
 WFsingle::WFsingle ( const unsigned & popsize ) : N(popsize),
 						  mutations(mlist()),                //No muts in the population
@@ -9,4 +11,11 @@ WFsingle::WFsingle ( const unsigned & popsize ) : N(popsize),
 						  fixations(mvector()),
 						  fixation_times(ftvector())
 {
+}
+
+RCPP_MODULE(WFsingle)
+{
+  Rcpp::class_<WFsingle>( "WFsingle" )
+    .constructor<unsigned>("Initialize a monomorphic population of N diploids")
+    ;
 }
