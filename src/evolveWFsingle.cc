@@ -18,20 +18,18 @@
 //' @param seed Random number seed for the simulation
 //' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 //[[Rcpp::export]]
-void evolveWFsingle( SEXP pop,
-		     const double & mu_n,
-		     const double & mu_s,
-		     const double & s,
-		     const double & h,
-		     const double & littler,
-		     const Rcpp::IntegerVector & Ns,
-		     const unsigned long & seed,
-		     const bool & dist = true)
+void evolveWFsingle(SEXP pop,
+		    const double & mu_n,
+		    const double & mu_s,
+		    const double & s,
+		    const double & h,
+		    const double & littler,
+		    const Rcpp::IntegerVector & Ns,
+		    const unsigned long & seed,
+				    const bool & dist = true)
 {
   Rcpp::XPtr<WFsingle> ppop(pop);
-
   gsl_rng_ptr_t r( gsl_rng_alloc(gsl_rng_taus2) );
-  //gsl_rng * r =  gsl_rng_alloc(gsl_rng_taus2);
   gsl_rng_set(r.get(),seed);
 
   //define the genetic map
@@ -112,5 +110,6 @@ void evolveWFsingle( SEXP pop,
       //update current pop size
       ppop->N = nextN;
     }
+  Rcpp::Rcerr << ppop->nmuts() << '\n';
 }
 

@@ -1,4 +1,3 @@
-#include <Rcpp.h>
 #include <WFsingle.hpp>
 
 // [[Rcpp::plugins(cpp11)]]
@@ -13,9 +12,23 @@ WFsingle::WFsingle ( const unsigned & popsize ) : N(popsize),
 {
 }
 
+WFsingle::mlist::size_type WFsingle::nmuts() const { return mutations.size(); }
+
+Rcpp::XPtr<WFsingle> makeWFsingle(const unsigned & N) { return Rcpp::XPtr<WFsingle>(new WFsingle(N)); }
+//WFsingle makeWFsingle(const unsigned & N) { return WFsingle(N); }
+
+// [[Rcpp::export]]
+unsigned WFsingleNmuts(SEXP pop) {
+  Rcpp::XPtr<WFsingle> ppop(pop);
+  return ppop->nmuts();
+}
+
 RCPP_MODULE(WFsingle)
 {
   Rcpp::class_<WFsingle>( "WFsingle" )
     .constructor<unsigned>("Initialize a monomorphic population of N diploids")
+    .method("nmuts",&WFsingle::nmuts,"Return number of mutations")
     ;
+  Rcpp::function("make_WFsingle", &makeWFsingle,"Make a WFsingle object");
 }
+

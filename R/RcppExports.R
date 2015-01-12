@@ -15,3 +15,7 @@ evolveWFsingle <- function(pop, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE
     invisible(.Call('foRward_evolveWFsingle', PACKAGE = 'foRward', pop, mu_n, mu_s, s, h, littler, Ns, seed, dist))
 }
 
+WFsingleNmuts <- function(pop) {
+    .Call('foRward_WFsingleNmuts', PACKAGE = 'foRward', pop)
+}
+

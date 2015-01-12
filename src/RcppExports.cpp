@@ -25,3 +25,18 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// WFsingleNmuts
+unsigned WFsingleNmuts(SEXP pop);
+RcppExport SEXP foRward_WFsingleNmuts(SEXP popSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
+        unsigned __result = WFsingleNmuts(pop);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}

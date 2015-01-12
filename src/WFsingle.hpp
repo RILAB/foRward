@@ -13,9 +13,11 @@
 #include <boost/pool/pool_alloc.hpp>
 #include <boost/unordered_set.hpp>
 #include <boost/functional/hash.hpp>
+#include <RcppCommon.h>
 
-struct WFsingle
+class WFsingle
 {
+public:
   unsigned N;
 
   //Typedefs for various containers
@@ -40,6 +42,13 @@ struct WFsingle
 
   //Constructors
   WFsingle( const unsigned & popsize );
+
+  //Helper functions
+  mlist::size_type nmuts() const;
 };
 
+RCPP_EXPOSED_CLASS(WFsingle);
+
 #endif
+
+#include <Rcpp.h>
