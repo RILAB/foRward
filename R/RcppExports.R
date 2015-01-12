@@ -2,6 +2,15 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' Evolve a single population under multiplicative fitness and arbitrary changes in N
+#' @param pop An object of type WFsingle
+#' @param mu_n The neutral mutation rate (per gamete per generation)
+#' @param mu_n The mutation rate to selected mutations (per gamete per generation)
+#' @param s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)
+#' @param h The dominance of a selected mutation
+#' @param littler The recombination rate (per diploid, per generation). 
+#' @param Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
+#' @param seed Random number seed for the simulation
+#' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 evolveWFsingle <- function(pop, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE) {
     invisible(.Call('foRward_evolveWFsingle', PACKAGE = 'foRward', pop, mu_n, mu_s, s, h, littler, Ns, seed, dist))
 }

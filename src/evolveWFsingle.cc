@@ -8,6 +8,15 @@
 // [[Rcpp::plugins(cpp11)]]
 
 //' Evolve a single population under multiplicative fitness and arbitrary changes in N
+//' @param pop An object of type WFsingle
+//' @param mu_n The neutral mutation rate (per gamete per generation)
+//' @param mu_n The mutation rate to selected mutations (per gamete per generation)
+//' @param s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)
+//' @param h The dominance of a selected mutation
+//' @param littler The recombination rate (per diploid, per generation). 
+//' @param Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
+//' @param seed Random number seed for the simulation
+//' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 //[[Rcpp::export]]
 void evolveWFsingle( SEXP pop,
 		     const double & mu_n,
