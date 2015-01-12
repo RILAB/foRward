@@ -11,8 +11,8 @@
 #' @param Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
 #' @param seed Random number seed for the simulation
 #' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
-evolveWFsingle <- function(pop, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE) {
-    invisible(.Call('foRward_evolveWFsingle', PACKAGE = 'foRward', pop, mu_n, mu_s, s, h, littler, Ns, seed, dist))
+evolveWFsingle <- function(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE) {
+    .Call('foRward_evolveWFsingle', PACKAGE = 'foRward', N0, mu_n, mu_s, s, h, littler, Ns, seed, dist)
 }
 
 WFsingleNmuts <- function(pop) {

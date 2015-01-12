@@ -15,6 +15,9 @@ WFsingle::WFsingle ( const unsigned & popsize ) : N(popsize),
 WFsingle::mlist::size_type WFsingle::nmuts() const { return mutations.size(); }
 
 Rcpp::XPtr<WFsingle> makeWFsingle(const unsigned & N) { return Rcpp::XPtr<WFsingle>(new WFsingle(N)); }
+//RcppExport SEXP makeWFsingle(const unsigned & N) { return Rcpp::XPtr<WFsingle>(new WFsingle(N)); }
+//WFsingle makeWFsingle(const unsigned & N) { return WFsingle(N); }
+
 //WFsingle makeWFsingle(const unsigned & N) { return WFsingle(N); }
 
 // [[Rcpp::export]]

@@ -6,12 +6,13 @@
 using namespace Rcpp;
 
 // evolveWFsingle
-void evolveWFsingle(SEXP pop, const double& mu_n, const double& mu_s, const double& s, const double& h, const double& littler, const Rcpp::IntegerVector& Ns, const unsigned long& seed, const bool& dist = true);
-RcppExport SEXP foRward_evolveWFsingle(SEXP popSEXP, SEXP mu_nSEXP, SEXP mu_sSEXP, SEXP sSEXP, SEXP hSEXP, SEXP littlerSEXP, SEXP NsSEXP, SEXP seedSEXP, SEXP distSEXP) {
+SEXP evolveWFsingle(const unsigned& N0, const double& mu_n, const double& mu_s, const double& s, const double& h, const double& littler, const Rcpp::IntegerVector& Ns, const unsigned long& seed, const bool& dist = true);
+RcppExport SEXP foRward_evolveWFsingle(SEXP N0SEXP, SEXP mu_nSEXP, SEXP mu_sSEXP, SEXP sSEXP, SEXP hSEXP, SEXP littlerSEXP, SEXP NsSEXP, SEXP seedSEXP, SEXP distSEXP) {
 BEGIN_RCPP
+    SEXP __sexp_result;
     {
         Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
+        Rcpp::traits::input_parameter< const unsigned& >::type N0(N0SEXP );
         Rcpp::traits::input_parameter< const double& >::type mu_n(mu_nSEXP );
         Rcpp::traits::input_parameter< const double& >::type mu_s(mu_sSEXP );
         Rcpp::traits::input_parameter< const double& >::type s(sSEXP );
@@ -20,9 +21,11 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type Ns(NsSEXP );
         Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
         Rcpp::traits::input_parameter< const bool& >::type dist(distSEXP );
-        evolveWFsingle(pop, mu_n, mu_s, s, h, littler, Ns, seed, dist);
+        SEXP __result = evolveWFsingle(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
-    return R_NilValue;
+    UNPROTECT(1);
+    return __sexp_result;
 END_RCPP
 }
 // WFsingleNmuts
