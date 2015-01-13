@@ -19,8 +19,6 @@ struct popgenmut : public KTfwd::mutation_base
   double s,h;
   unsigned o;
   using base = KTfwd::mutation_base;
-  //C++11: inherit constructors from the base class:
-  using base::base;
   //Constructor -- the first three are the parameters for the base class
   popgenmut( const double & position, 
 	     const unsigned & count,
