@@ -13,7 +13,7 @@ template class SinglePop<popgenmut>;
 //' @param seed RNG seed
 // [[Rcpp::export]]
 Rcpp::List sampleStd( SEXP pop, const unsigned & nsam,
-		       const unsigned long & seed)
+		      const unsigned long & seed)
 {
   Rcpp::XPtr<WFpop_std> ppop(pop);
   gsl_rng_ptr_t r(gsl_rng_alloc(gsl_rng_taus2) );
