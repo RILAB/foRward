@@ -15,10 +15,6 @@ evolveWFsingle <- function(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE)
     .Call('foRward_evolveWFsingle', PACKAGE = 'foRward', N0, mu_n, mu_s, s, h, littler, Ns, seed, dist)
 }
 
-WFsingleNmuts <- function(pop) {
-    .Call('foRward_WFsingleNmuts', PACKAGE = 'foRward', pop)
-}
-
 #' Sample nsam chromosomes from population
 #' @param pop A population returned from evolveWFsingle
 #' @param nsam The sample size
