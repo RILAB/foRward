@@ -1,9 +1,15 @@
-#include <WFsingle.hpp>
+#include <SinglePop.hpp>
+#include <popgenmut.hpp>
+//using WFsingle = SinglePop<popgenmut>;
+//template<> RCPP_EXPOSED_CLASS(SinglePop<popgenmut>);
+template class SinglePop<popgenmut>;
+using WFsingle = SinglePop<popgenmut>;
+#include <Rcpp.h>
 #include <gslutils.hpp>
 #include <fwdpp/diploid.hh>
 // [[Rcpp::plugins(cpp11)]]
 
-template class SinglePop<popgenmut>;
+
 
 
 //' Sample nsam chromosomes from population
