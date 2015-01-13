@@ -1,16 +1,10 @@
-#include <SinglePop.hpp>
-#include <popgenmut.hpp>
-//using WFsingle = SinglePop<popgenmut>;
-//template<> RCPP_EXPOSED_CLASS(SinglePop<popgenmut>);
+#include <WFsingle.hpp>
 template class SinglePop<popgenmut>;
-using WFsingle = SinglePop<popgenmut>;
 #include <Rcpp.h>
 #include <gslutils.hpp>
 #include <fwdpp/diploid.hh>
+
 // [[Rcpp::plugins(cpp11)]]
-
-
-
 
 //' Sample nsam chromosomes from population
 //' @param pop A population returned from evolveWFsingle
@@ -26,7 +20,8 @@ Rcpp::List sampleSingle( SEXP pop, const unsigned & nsam,
 
   auto __sample = KTfwd::ms_sample_separate(r.get(),&ppop->diploids,nsam);
 
-  Rcpp::IntegerMatrix n(nsam,__sample.first.size()),s(nsam,__sample.second.size());
+  Rcpp::IntegerMatrix n((!__sample.first.empty())?nsam:0,__sample.first.size()),
+    s((!__sample.second.empty())?nsam:0,__sample.second.size());
   Rcpp::NumericVector npos,spos;
 
   Rcpp::Rcerr << __sample.first.size() << ' ' << __sample.second.size() << ' ' << n.nrow() << ' ' << n.ncol() << '\n';
@@ -42,6 +37,7 @@ Rcpp::List sampleSingle( SEXP pop, const unsigned & nsam,
       for(unsigned j=0;j<nsam;++j)
 	s(j,i)=((__sample.second[i].second[j] == '1') ? 1 : 0);
     }
+  Rcpp::Rcerr << ppop->nmutations() << '\n';
   return Rcpp::List::create( Rcpp::Named("npos") = npos,
 			     Rcpp::Named("spos") = spos,
 			     Rcpp::Named("neutral") = n,
@@ -49,10 +45,12 @@ Rcpp::List sampleSingle( SEXP pop, const unsigned & nsam,
 }
 
 
-RCPP_MODULE(WFsingle)
-{
-  Rcpp::class_<WFsingle>( "WFsingle" )
-    .constructor<unsigned>("Initialize a monomorphic population of N diploids")
-    ;
-}
+// RCPP_MODULE(WFsingle)
+// {
+//   Rcpp::class_<WFsingle>( "WFsingle" )
+//     .constructor<unsigned>("Initialize a monomorphic population of N diploids")
+//     //Methods cannot be exposed if privately inherited, even via using
+//     //.method("nmutations",&SinglePop<popgenmut>::nmutations)
+//     ;
+// }
 
