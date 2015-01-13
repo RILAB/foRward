@@ -5,9 +5,26 @@
 
 using namespace Rcpp;
 
-// evolveWFsingle
-SEXP evolveWFsingle(const unsigned& N0, const double& mu_n, const double& mu_s, const double& s, const double& h, const double& littler, const Rcpp::IntegerVector& Ns, const unsigned long& seed, const bool& dist = true);
-RcppExport SEXP foRward_evolveWFsingle(SEXP N0SEXP, SEXP mu_nSEXP, SEXP mu_sSEXP, SEXP sSEXP, SEXP hSEXP, SEXP littlerSEXP, SEXP NsSEXP, SEXP seedSEXP, SEXP distSEXP) {
+// sample_std
+Rcpp::List sample_std(SEXP pop, const unsigned& nsam, const unsigned long& seed);
+RcppExport SEXP foRward_sample_std(SEXP popSEXP, SEXP nsamSEXP, SEXP seedSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
+        Rcpp::traits::input_parameter< const unsigned& >::type nsam(nsamSEXP );
+        Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
+        Rcpp::List __result = sample_std(pop, nsam, seed);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
+// evolve_std
+SEXP evolve_std(const unsigned& N0, const double& mu_n, const double& mu_s, const double& s, const double& h, const double& littler, const Rcpp::IntegerVector& Ns, const unsigned long& seed, const bool& dist = true);
+RcppExport SEXP foRward_evolve_std(SEXP N0SEXP, SEXP mu_nSEXP, SEXP mu_sSEXP, SEXP sSEXP, SEXP hSEXP, SEXP littlerSEXP, SEXP NsSEXP, SEXP seedSEXP, SEXP distSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -21,24 +38,7 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< const Rcpp::IntegerVector& >::type Ns(NsSEXP );
         Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
         Rcpp::traits::input_parameter< const bool& >::type dist(distSEXP );
-        SEXP __result = evolveWFsingle(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist);
-        PROTECT(__sexp_result = Rcpp::wrap(__result));
-    }
-    UNPROTECT(1);
-    return __sexp_result;
-END_RCPP
-}
-// sampleSingle
-Rcpp::List sampleSingle(SEXP pop, const unsigned& nsam, const unsigned long& seed);
-RcppExport SEXP foRward_sampleSingle(SEXP popSEXP, SEXP nsamSEXP, SEXP seedSEXP) {
-BEGIN_RCPP
-    SEXP __sexp_result;
-    {
-        Rcpp::RNGScope __rngScope;
-        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
-        Rcpp::traits::input_parameter< const unsigned& >::type nsam(nsamSEXP );
-        Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
-        Rcpp::List __result = sampleSingle(pop, nsam, seed);
+        SEXP __result = evolve_std(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
