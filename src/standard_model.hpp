@@ -5,6 +5,6 @@
 #include <popgenmut.hpp>
 
 //Single Wright-Fisher pop, mutations have an s and h associated with them
-using WFpop_mult = SinglePop<popgenmut>;
+using WFpop_std = SinglePop<popgenmut>;
 
 #endif
