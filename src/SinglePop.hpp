@@ -14,6 +14,15 @@
 #include <boost/unordered_set.hpp>
 #include <boost/functional/hash.hpp>
 
+/*
+  Abstraction of what is needed to simulate a single population
+  using an individual-based sampler from fwdpp
+
+  All that is missing is the mutation_type.
+
+  This uses boost containers so that the rapid boost::pool_allocator
+  may be used.
+ */
 template<typename mutation_type>
 class SinglePop
 {
