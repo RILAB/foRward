@@ -37,7 +37,6 @@ Rcpp::List sampleSingle( SEXP pop, const unsigned & nsam,
       for(unsigned j=0;j<nsam;++j)
 	s(j,i)=((__sample.second[i].second[j] == '1') ? 1 : 0);
     }
-  Rcpp::Rcerr << ppop->nmutations() << '\n';
   return Rcpp::List::create( Rcpp::Named("npos") = npos,
 			     Rcpp::Named("spos") = spos,
 			     Rcpp::Named("neutral") = n,
