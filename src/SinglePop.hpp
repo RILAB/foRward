@@ -16,7 +16,7 @@
 #include <RcppCommon.h>
 
 template<typename mutation_type>
-struct SinglePop
+class SinglePop
 {
 public:
   unsigned N;

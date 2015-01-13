@@ -4,13 +4,9 @@
 #include <SinglePop.hpp>
 #include <popgenmut.hpp>
 
- class WFsingle : public SinglePop<popgenmut>
- {
- public:
-   using baseClass = SinglePop<popgenmut>;
-   using baseClass::baseClass;
- };
+extern template class SinglePop<popgenmut>;
 
-RCPP_EXPOSED_CLASS(WFsingle);
+using WFsingle = SinglePop<popgenmut>;
+//template<> RCPP_EXPOSED_CLASS(SinglePop<popgenmut>);
 
 #endif

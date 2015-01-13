@@ -3,7 +3,7 @@
 #include <fwdpp/diploid.hh>
 // [[Rcpp::plugins(cpp11)]]
 
-
+template class SinglePop<popgenmut>;
 
 
 //' Sample nsam chromosomes from population
