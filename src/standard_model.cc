@@ -54,27 +54,28 @@ Rcpp::List sampleStd( SEXP pop, const unsigned & nsam,
 //' @param seed Random number seed for the simulation
 //' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 //[[Rcpp::export]]
-SEXP evolveStd(const unsigned & N0,
+SEXP evolveStd(SEXP rng,
+	       const unsigned & N0,
 	       const double & mu_n,
 	       const double & mu_s,
 	       const double & s,
 	       const double & h,
 	       const double & littler,
 	       const Rcpp::IntegerVector & Ns,
-	       const unsigned long & seed,
 	       const bool & dist = true)
 {
+  Rcpp::XPtr<GSLrng> prng(rng);
   Rcpp::XPtr<WFpop_std> ppop(new WFpop_std(N0));
-  gsl_rng_ptr_t r( gsl_rng_alloc(gsl_rng_taus2) );
-  gsl_rng_set(r.get(),seed);
+  //gsl_rng_ptr_t r( gsl_rng_alloc(gsl_rng_taus2) );
+  //gsl_rng_set(r.get(),seed);
 
   //define the genetic map
-  std::function<double(void)> recmap = std::bind(gsl_rng_uniform,r.get());
+  std::function<double(void)> recmap = std::bind(gsl_rng_uniform,prng->r.get());
 
   unsigned generation =  0;
   for( const auto & nextN : Ns )
     {
-      double wbar = KTfwd::sample_diploid(r.get(),
+      double wbar = KTfwd::sample_diploid(prng->r.get(),
 					  &ppop->gametes,  //non-const pointer to gametes
 					  &ppop->diploids, //non-const pointer to diploids
 					  &ppop->mutations, //non-const pointer to mutations
@@ -87,12 +88,12 @@ SEXP evolveStd(const unsigned & N0,
 					    is used as a placeholder for that gamete.
 					  */
 					  //std::bind(neutral_mutations_inf_sites,r,generation,std::placeholders::_1,&lookup),
-					  std::bind(popgen_mutation_model(),r.get(),generation,s,h,mu_s,mu_n,&ppop->mut_lookup,dist),
+					  std::bind(popgen_mutation_model(),prng->r.get(),generation,s,h,mu_s,mu_n,&ppop->mut_lookup,dist),
 					  //The recombination policy includes the uniform crossover rate
 					  std::bind(KTfwd::genetics101(),std::placeholders::_1,std::placeholders::_2,
 						    &ppop->gametes,
 						    littler,
-						    r.get(),
+						    prng->r.get(),
 						    recmap),
 					  /*
 					    Policy to insert new mutations at the end of the mutations list

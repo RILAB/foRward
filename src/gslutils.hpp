@@ -14,6 +14,10 @@ struct gsl_rng_deleter
 using gsl_rng_ptr_t = std::unique_ptr< gsl_rng,
 				       gsl_rng_deleter >;
 
+
+class GSLrng;
+RCPP_EXPOSED_CLASS(GSLrng);
+
 class GSLrng {
 public:
   gsl_rng_ptr_t r;
@@ -22,9 +26,9 @@ public:
   }
 };
 
-RCPP_EXPOSED_CLASS(GSLrng);
 #include <Rcpp.h>
-//[[Rcpp::export]]
-Rcpp::XPtr<GSLrng> makeGSLrng( const unsigned & seed );
+
+SEXP makeGSLrng( const unsigned & seed );
+
 
 #endif

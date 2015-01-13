@@ -3,7 +3,7 @@
 \alias{evolveStd}
 \title{Evolve a single population under multiplicative fitness and arbitrary changes in N}
 \usage{
-evolveStd(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE)
+evolveStd(rng, N0, mu_n, mu_s, s, h, littler, Ns, dist = TRUE)
 }
 \arguments{
 \item{N0}{The initial population size}
