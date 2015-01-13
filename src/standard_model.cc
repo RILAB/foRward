@@ -12,7 +12,7 @@ template class SinglePop<popgenmut>;
 //' @param nsam The sample size
 //' @param seed RNG seed
 // [[Rcpp::export]]
-Rcpp::List sample_std( SEXP pop, const unsigned & nsam,
+Rcpp::List sampleStd( SEXP pop, const unsigned & nsam,
 		       const unsigned long & seed)
 {
   Rcpp::XPtr<WFpop_std> ppop(pop);
@@ -54,15 +54,15 @@ Rcpp::List sample_std( SEXP pop, const unsigned & nsam,
 //' @param seed Random number seed for the simulation
 //' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 //[[Rcpp::export]]
-SEXP evolve_std(const unsigned & N0,
-		const double & mu_n,
-		const double & mu_s,
-		const double & s,
-		const double & h,
-		const double & littler,
-		const Rcpp::IntegerVector & Ns,
-		const unsigned long & seed,
-		const bool & dist = true)
+SEXP evolveStd(const unsigned & N0,
+	       const double & mu_n,
+	       const double & mu_s,
+	       const double & s,
+	       const double & h,
+	       const double & littler,
+	       const Rcpp::IntegerVector & Ns,
+	       const unsigned long & seed,
+	       const bool & dist = true)
 {
   Rcpp::XPtr<WFpop_std> ppop(new WFpop_std(N0));
   gsl_rng_ptr_t r( gsl_rng_alloc(gsl_rng_taus2) );
