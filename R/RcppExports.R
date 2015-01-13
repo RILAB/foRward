@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' Evolve a single population under multiplicative fitness and arbitrary changes in N
-#' @param pop An object of type WFsingle
+#' @param N0 The initial population size
 #' @param mu_n The neutral mutation rate (per gamete per generation)
 #' @param mu_n The mutation rate to selected mutations (per gamete per generation)
 #' @param s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)
@@ -17,5 +17,13 @@ evolveWFsingle <- function(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE)
 
 WFsingleNmuts <- function(pop) {
     .Call('foRward_WFsingleNmuts', PACKAGE = 'foRward', pop)
+}
+
+#' Sample nsam chromosomes from population
+#' @param pop A population returned from evolveWFsingle
+#' @param nsam The sample size
+#' @param seed RNG seed
+sample <- function(pop, nsam, seed) {
+    .Call('foRward_sample', PACKAGE = 'foRward', pop, nsam, seed)
 }
 

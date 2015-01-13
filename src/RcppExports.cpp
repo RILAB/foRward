@@ -43,3 +43,20 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// sample
+Rcpp::List sample(SEXP pop, const unsigned& nsam, const unsigned long& seed);
+RcppExport SEXP foRward_sample(SEXP popSEXP, SEXP nsamSEXP, SEXP seedSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
+        Rcpp::traits::input_parameter< const unsigned& >::type nsam(nsamSEXP );
+        Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
+        Rcpp::List __result = sample(pop, nsam, seed);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}

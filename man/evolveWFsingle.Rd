@@ -6,6 +6,8 @@
 evolveWFsingle(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE)
 }
 \arguments{
+\item{N0}{The initial population size}
+
 \item{mu_n}{The neutral mutation rate (per gamete per generation)}
 
 \item{s}{The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)}
@@ -19,8 +21,6 @@ evolveWFsingle(N0, mu_n, mu_s, s, h, littler, Ns, seed, dist = TRUE)
 \item{seed}{Random number seed for the simulation}
 
 \item{dist}{If true, simulate a distribution of fitness effects, otherwise treat s as fixed}
-
-\item{pop}{An object of type WFsingle}
 
 \item{mu_n}{The mutation rate to selected mutations (per gamete per generation)}
 }
