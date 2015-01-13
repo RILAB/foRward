@@ -26,8 +26,8 @@ unsigned WFsingleNmuts(SEXP pop) {
 //' @param nsam The sample size
 //' @param seed RNG seed
 // [[Rcpp::export]]
-Rcpp::List sample( SEXP pop, const unsigned & nsam,
-		   const unsigned long & seed)
+Rcpp::List sampleSingle( SEXP pop, const unsigned & nsam,
+			 const unsigned long & seed)
 {
   Rcpp::XPtr<WFsingle> ppop(pop);
   gsl_rng_ptr_t r(gsl_rng_alloc(gsl_rng_taus2) );

@@ -23,7 +23,7 @@ WFsingleNmuts <- function(pop) {
 #' @param pop A population returned from evolveWFsingle
 #' @param nsam The sample size
 #' @param seed RNG seed
-sample <- function(pop, nsam, seed) {
-    .Call('foRward_sample', PACKAGE = 'foRward', pop, nsam, seed)
+sampleSingle <- function(pop, nsam, seed) {
+    .Call('foRward_sampleSingle', PACKAGE = 'foRward', pop, nsam, seed)
 }
 
