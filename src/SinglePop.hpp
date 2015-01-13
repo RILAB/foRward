@@ -13,7 +13,6 @@
 #include <boost/pool/pool_alloc.hpp>
 #include <boost/unordered_set.hpp>
 #include <boost/functional/hash.hpp>
-#include <RcppCommon.h>
 
 template<typename mutation_type>
 class SinglePop
