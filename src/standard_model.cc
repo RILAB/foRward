@@ -12,14 +12,14 @@ template class SinglePop<popgenmut>;
 //' @param nsam The sample size
 //' @param seed RNG seed
 // [[Rcpp::export]]
-Rcpp::List sampleStd( SEXP pop, const unsigned & nsam,
+Rcpp::List sampleStd( SEXP pop, SEXP rng,
+		      const unsigned & nsam,
 		      const unsigned long & seed)
 {
   Rcpp::XPtr<WFpop_std> ppop(pop);
-  gsl_rng_ptr_t r(gsl_rng_alloc(gsl_rng_taus2) );
-  gsl_rng_set(r.get(),seed);
+  Rcpp::XPtr<GSLrng> r(rng);
 
-  auto __sample = KTfwd::ms_sample_separate(r.get(),&ppop->diploids,nsam);
+  auto __sample = KTfwd::ms_sample_separate(r->r.get(),&ppop->diploids,nsam);
 
   Rcpp::IntegerMatrix n((!__sample.first.empty())?nsam:0,__sample.first.size()),
     s((!__sample.second.empty())?nsam:0,__sample.second.size());
@@ -66,8 +66,6 @@ SEXP evolveStd(SEXP rng,
 {
   Rcpp::XPtr<GSLrng> prng(rng);
   Rcpp::XPtr<WFpop_std> ppop(new WFpop_std(N0));
-  //gsl_rng_ptr_t r( gsl_rng_alloc(gsl_rng_taus2) );
-  //gsl_rng_set(r.get(),seed);
 
   //define the genetic map
   std::function<double(void)> recmap = std::bind(gsl_rng_uniform,prng->r.get());

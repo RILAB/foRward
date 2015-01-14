@@ -3,7 +3,7 @@
 \alias{sampleStd}
 \title{Sample nsam chromosomes from population}
 \usage{
-sampleStd(pop, nsam, seed)
+sampleStd(pop, rng, nsam, seed)
 }
 \arguments{
 \item{pop}{A population returned from evolve_std}
