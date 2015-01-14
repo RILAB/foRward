@@ -5,6 +5,10 @@
 #include <popgenmut.hpp>
 
 //Single Wright-Fisher pop, mutations have an s and h associated with them
+//This using declaration is an template alias/typedef
+//and is NOT sufficient to define the type.  In order to provide a
+//definition of the type, we must explicitly instantiate it,
+//which we'll do in standard_model.cc
 using WFpop_std = SinglePop<popgenmut>;
 
 #endif

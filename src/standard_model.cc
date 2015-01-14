@@ -1,5 +1,5 @@
 #include <standard_model.hpp>
-template class SinglePop<popgenmut>;
+template class SinglePop<popgenmut>; //This forces the compiler to generate the type
 #include <Rcpp.h>
 #include <gslutils.hpp>
 #include <fwdpp/diploid.hh>
