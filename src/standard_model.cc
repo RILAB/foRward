@@ -30,7 +30,6 @@ Rcpp::List sampleStd( SEXP pop, SEXP rng,
 //' @param h The dominance of a selected mutation
 //' @param littler The recombination rate (per diploid, per generation). 
 //' @param Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
-//' @param seed Random number seed for the simulation
 //' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 //[[Rcpp::export]]
 SEXP evolveStd(SEXP rng,
