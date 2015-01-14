@@ -13,10 +13,13 @@ popsizes=rep(N,NGENS)
 #' type gsl_rng *, we need a wrapper to one of those.
 #' The functions foRward::makeGLSrng returns an external
 #' pointer to one
-
 GSL = makeGSLrng(100);  #RNG seed object via GSL routines
 for(i in 1:NREPS)
     {
+        #'x will be an Rcpp wrapper around an SEXP, which
+        #'is a pointer to external data used by the current R session
+        #'that pointer points to an object of type WFpop_std,
+        #'which is defined in standard_model.hpp
         x=evolveStd(GSL,1000,0.01,0,0.1,0.5,0.0,popsizes)
         x.sample = sampleStd(x,10,0);
         for(j in 1:ncol(x.sample$neutral))
@@ -26,9 +29,4 @@ for(i in 1:NREPS)
             }
     }
 print(sfs/NREPS)
-#print(x.sample$npos)
-#print(x.sample$spos)
-#print(x.sample$neutral)
-#print(x.sample$selected)
-
 
