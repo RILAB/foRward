@@ -10,8 +10,9 @@ makeGSLrng <- function(seed) {
 #' @param pop A population returned from evolve_std
 #' @param rng A GSLrng
 #' @param nsam The sample size
-sampleStd <- function(pop, rng, nsam) {
-    .Call('foRward_sampleStd', PACKAGE = 'foRward', pop, rng, nsam)
+#' @param remove_fixed If TRUE, do not include mutations fixed in the sample in the output.  Default is to include fixations
+sampleStd <- function(pop, rng, nsam, remove_fixed = FALSE) {
+    .Call('foRward_sampleStd', PACKAGE = 'foRward', pop, rng, nsam, remove_fixed)
 }
 
 #' Evolve a single population under multiplicative fitness and arbitrary changes in N

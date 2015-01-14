@@ -12,9 +12,11 @@ template class SinglePop<popgenmut>;
 //' @param pop A population returned from evolve_std
 //' @param rng A GSLrng
 //' @param nsam The sample size
+//' @param remove_fixed If TRUE, do not include mutations fixed in the sample in the output.  Default is to include fixations
 // [[Rcpp::export]]
 Rcpp::List sampleStd( SEXP pop, SEXP rng,
-		      const unsigned & nsam)
+		      const unsigned & nsam,
+		      const bool & remove_fixed = false)
 {
   return SinglePopSampler<WFpop_std>(pop,rng,nsam);
 }

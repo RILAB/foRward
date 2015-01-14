@@ -3,7 +3,7 @@
 \alias{sampleStd}
 \title{Sample nsam chromosomes from population}
 \usage{
-sampleStd(pop, rng, nsam)
+sampleStd(pop, rng, nsam, remove_fixed = FALSE)
 }
 \arguments{
 \item{pop}{A population returned from evolve_std}
@@ -11,6 +11,8 @@ sampleStd(pop, rng, nsam)
 \item{rng}{A GSLrng}
 
 \item{nsam}{The sample size}
+
+\item{remove_fixed}{If TRUE, do not include mutations fixed in the sample in the output.  Default is to include fixations}
 }
 \description{
 Sample nsam chromosomes from population
