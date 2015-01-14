@@ -1,7 +1,7 @@
 //#include <SinglePop.hpp>
 #include <Rcpp.h>
 #include <fwdpp/sampling_functions.hpp>
-
+#include <algorithm>
 /*
   This file provides a templated abstraction
   of the operation of taking a sample of size n 
@@ -25,6 +25,34 @@ namespace foRward {
     Rcpp::XPtr<GSLrng> r(rng);
 
     auto __sample = KTfwd::ms_sample_separate(r->r.get(),&ppop->diploids,nsam,remove_fixed);
+
+    /*
+      The fwdpp function KTfwd::ms_sample only works on the diploids, and thus will
+      only put fixed sites in the sample if they are poly in the pop and then just happen
+      to be fixed in sample.
+
+      To really get the fixations, if they are wanted, we need to add them from
+      ppop->fixations
+    */
+    if( ! remove_fixed )
+      {
+	std::for_each( ppop->mutations.begin(),
+		       ppop->mutations.end(),
+		       [&__sample,&nsam]( const typename poptype::mtype & m) {
+			 if( m.neutral ) {
+			   __sample.first.push_back( std::make_pair(m.pos,std::string(nsam,'1')) );
+			 } else {
+			   __sample.second.push_back( std::make_pair(m.pos,std::string(nsam,'1')) );
+			 }
+		       } );
+	//sort the data
+	std::sort( __sample.first.begin(),__sample.first.end(),
+		   [](const std::pair<double,std::string> & lhs,
+		      const std::pair<double,std::string> & rhs) { return lhs.first < rhs.first; });
+	std::sort( __sample.second.begin(),__sample.second.end(),
+		   [](const std::pair<double,std::string> & lhs,
+		      const std::pair<double,std::string> & rhs) { return lhs.first < rhs.first; });
+      }
 
     Rcpp::IntegerMatrix n((!__sample.first.empty())?nsam:0,__sample.first.size()),
       s((!__sample.second.empty())?nsam:0,__sample.second.size());
