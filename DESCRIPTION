@@ -1,7 +1,7 @@
 Package: foRward
 Title: foRward: A C++11/Rcpp package for forward-time population genetic
     simulation
-Version: 0.01
+Version: 0.0.2
 Authors@R: "'Kevin Thornton' <krthornt@uci.edu> [aut, cre]"
 Description: foRward using the C++11 template library fwdpp to implement
     various common population-genetic models
