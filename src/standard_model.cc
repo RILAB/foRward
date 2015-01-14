@@ -1,5 +1,5 @@
 #include <foRward/standard_model.hpp>
-template class SinglePop<popgenmut>; //This forces the compiler to generate the type
+template class foRward::SinglePop<foRward::popgenmut>; //This forces the compiler to generate the type
 #include <Rcpp.h>
 #include <foRward/gslutils.hpp>
 #include <fwdpp/diploid.hh>
@@ -18,7 +18,7 @@ Rcpp::List sampleStd( SEXP pop, SEXP rng,
 		      const unsigned & nsam,
 		      const bool & remove_fixed = false)
 {
-  return SinglePopSampler<WFpop_std>(pop,rng,nsam);
+  return foRward::SinglePopSampler<foRward::WFpop_std>(pop,rng,nsam);
 }
 
 //' Evolve a single population under multiplicative fitness and arbitrary changes in N
@@ -43,6 +43,7 @@ SEXP evolveStd(SEXP rng,
 	       const bool & dist = true)
 {
   Rcpp::XPtr<GSLrng> prng(rng);
+  using foRward::WFpop_std;
   Rcpp::XPtr<WFpop_std> ppop(new WFpop_std(N0));
 
   //define the genetic map
@@ -64,7 +65,7 @@ SEXP evolveStd(SEXP rng,
 					    is used as a placeholder for that gamete.
 					  */
 					  //std::bind(neutral_mutations_inf_sites,r,generation,std::placeholders::_1,&lookup),
-					  std::bind(popgen_mutation_model(),prng->r.get(),generation,s,h,mu_s,mu_n,&ppop->mut_lookup,dist),
+					  std::bind(foRward::popgen_mutation_model(),prng->r.get(),generation,s,h,mu_s,mu_n,&ppop->mut_lookup,dist),
 					  //The recombination policy includes the uniform crossover rate
 					  std::bind(KTfwd::genetics101(),std::placeholders::_1,std::placeholders::_2,
 						    &ppop->gametes,

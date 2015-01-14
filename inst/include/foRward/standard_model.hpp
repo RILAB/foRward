@@ -9,6 +9,8 @@
 //and is NOT sufficient to define the type.  In order to provide a
 //definition of the type, we must explicitly instantiate it,
 //which we'll do in standard_model.cc
-using WFpop_std = SinglePop<popgenmut>;
+namespace foRward {
+  using WFpop_std = SinglePop<popgenmut>;
+}
 
 #endif
