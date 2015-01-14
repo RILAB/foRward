@@ -13,3 +13,4 @@ Maintainter: 'Kevin Thornton' <krthornt@uci.edu>
 Imports:
     Rcpp (>= 0.11.0)
 LinkingTo: Rcpp
+VignetteBuilder: knitr

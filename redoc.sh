@@ -5,4 +5,5 @@ library(Rcpp)
 library(devtools)
 compileAttributes()
 document()
+build_vignettes()
 EOF

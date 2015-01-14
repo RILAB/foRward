@@ -1,3 +1,15 @@
+---
+title: "Quick start with foRward"
+author: "Kevin Thornton"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+~~~{R}
 library(Rcpp)
 library(foRward)
 
@@ -29,4 +41,4 @@ for(i in 1:NREPS)
             }
     }
 print(sfs/NREPS)
-
+~~~
