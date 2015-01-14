@@ -92,6 +92,7 @@ For the matrices, each pair of rows corresponds to 1 diploid individual.
 The following code block estimates the expected site frequency spectrum for a sample of size $n = 10$ based on 100 replicates of simulating $N=1,000$ diploids for $10N$ generations with $\theta = 40$:
 
 ~~~{.r}
+#This code is identical to the "test.R" script that comes in the source repo
 library(Rcpp)
 library(foRward)
 

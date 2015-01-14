@@ -118,7 +118,8 @@ pop =<span class="st"> </span><span class="kw">evolveStd</span>(GSL,N,<span clas
 <div id="putting-it-all-together-the-site-frequency-spectrum" class="section level2">
 <h2>Putting it all together: the site frequency spectrum</h2>
 <p>The following code block estimates the expected site frequency spectrum for a sample of size <span class="math">\(n = 10\)</span> based on 100 replicates of simulating <span class="math">\(N=1,000\)</span> diploids for <span class="math">\(10N\)</span> generations with <span class="math">\(\theta = 40\)</span>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rcpp)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#This code is identical to the &quot;test.R&quot; script that comes in the source repo</span>
+<span class="kw">library</span>(Rcpp)
 <span class="kw">library</span>(foRward)
 
 <span class="co">#The sfs has n-1 bins</span>
