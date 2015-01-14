@@ -7,6 +7,13 @@ N=1000
 NGENS=10*N
 NREPS=100
 popsizes=rep(N,NGENS)
+
+#' You need to provide a random number generator to
+#' functions in foRward. Since fwdpp works via the GSL
+#' type gsl_rng *, we need a wrapper to one of those.
+#' The functions foRward::makeGLSrng returns an external
+#' pointer to one
+
 GSL = makeGSLrng(100);  #RNG seed object via GSL routines
 for(i in 1:NREPS)
     {
