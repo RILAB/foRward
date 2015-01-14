@@ -12,9 +12,35 @@
 
 <meta name="date" content="2015-01-14" />
 
-<title>Quick start with foRward</title>
+<title>Quick start with foRward: running simulations</title>
 
 
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <link href="data:text/css,body%20%7B%0A%20%20background%2Dcolor%3A%20%23fff%3B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20max%2Dwidth%3A%20700px%3B%0A%20%20overflow%3A%20visible%3B%0A%20%20padding%2Dleft%3A%202em%3B%0A%20%20padding%2Dright%3A%202em%3B%0A%20%20font%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0A%20%20font%2Dsize%3A%2014px%3B%0A%20%20line%2Dheight%3A%201%2E35%3B%0A%7D%0A%0A%23header%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0A%0A%23TOC%20%7B%0A%20%20clear%3A%20both%3B%0A%20%20margin%3A%200%200%2010px%2010px%3B%0A%20%20padding%3A%204px%3B%0A%20%20width%3A%20400px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20border%2Dradius%3A%205px%3B%0A%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20font%2Dsize%3A%2013px%3B%0A%20%20line%2Dheight%3A%201%2E3%3B%0A%7D%0A%20%20%23TOC%20%2Etoctitle%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%20%20font%2Dsize%3A%2015px%3B%0A%20%20%20%20margin%2Dleft%3A%205px%3B%0A%20%20%7D%0A%0A%20%20%23TOC%20ul%20%7B%0A%20%20%20%20padding%2Dleft%3A%2040px%3B%0A%20%20%20%20margin%2Dleft%3A%20%2D1%2E5em%3B%0A%20%20%20%20margin%2Dtop%3A%205px%3B%0A%20%20%20%20margin%2Dbottom%3A%205px%3B%0A%20%20%7D%0A%20%20%23TOC%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dleft%3A%20%2D2em%3B%0A%20%20%7D%0A%20%20%23TOC%20li%20%7B%0A%20%20%20%20line%2Dheight%3A%2016px%3B%0A%20%20%7D%0A%0Atable%20%7B%0A%20%20margin%3A%201em%20auto%3B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dcolor%3A%20%23DDDDDD%3B%0A%20%20border%2Dstyle%3A%20outset%3B%0A%20%20border%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0A%20%20border%2Dwidth%3A%202px%3B%0A%20%20padding%3A%205px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0A%20%20border%2Dwidth%3A%201px%3B%0A%20%20border%2Dstyle%3A%20inset%3B%0A%20%20line%2Dheight%3A%2018px%3B%0A%20%20padding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0A%20%20border%2Dleft%2Dstyle%3A%20none%3B%0A%20%20border%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%200%2E5em%200%3B%0A%7D%0A%0Ablockquote%20%7B%0A%20%20background%2Dcolor%3A%20%23f6f6f6%3B%0A%20%20padding%3A%200%2E25em%200%2E75em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%3A%20none%3B%0A%20%20border%2Dtop%3A%201px%20solid%20%23777%3B%0A%20%20margin%3A%2028px%200%3B%0A%7D%0A%0Adl%20%7B%0A%20%20margin%2Dleft%3A%200%3B%0A%7D%0A%20%20dl%20dd%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2013px%3B%0A%20%20%20%20margin%2Dleft%3A%2013px%3B%0A%20%20%7D%0A%20%20dl%20dt%20%7B%0A%20%20%20%20font%2Dweight%3A%20bold%3B%0A%20%20%7D%0A%0Aul%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%7D%0A%20%20ul%20li%20%7B%0A%20%20%20%20list%2Dstyle%3A%20circle%20outside%3B%0A%20%20%7D%0A%20%20ul%20ul%20%7B%0A%20%20%20%20margin%2Dbottom%3A%200%3B%0A%20%20%7D%0A%0Apre%2C%20code%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20color%3A%20%23333%3B%0A%7D%0Apre%20%7B%0A%20%20white%2Dspace%3A%20pre%2Dwrap%3B%20%20%20%20%2F%2A%20Wrap%20long%20lines%20%2A%2F%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20margin%3A%205px%200px%2010px%200px%3B%0A%20%20padding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0A%20%20background%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0A%0Acode%20%7B%0A%20%20font%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0A%20%20font%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0A%20%20padding%3A%202px%200px%3B%0A%7D%0A%0Adiv%2Efigure%20%7B%0A%20%20text%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0A%20%20background%2Dcolor%3A%20%23FFFFFF%3B%0A%20%20padding%3A%202px%3B%0A%20%20border%3A%201px%20solid%20%23DDDDDD%3B%0A%20%20border%2Dradius%3A%203px%3B%0A%20%20border%3A%201px%20solid%20%23CCCCCC%3B%0A%20%20margin%3A%200%205px%3B%0A%7D%0A%0Ah1%20%7B%0A%20%20margin%2Dtop%3A%200%3B%0A%20%20font%2Dsize%3A%2035px%3B%0A%20%20line%2Dheight%3A%2040px%3B%0A%7D%0A%0Ah2%20%7B%0A%20%20border%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20padding%2Dbottom%3A%202px%3B%0A%20%20font%2Dsize%3A%20145%25%3B%0A%7D%0A%0Ah3%20%7B%0A%20%20border%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0A%20%20padding%2Dtop%3A%2010px%3B%0A%20%20font%2Dsize%3A%20120%25%3B%0A%7D%0A%0Ah4%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0A%20%20margin%2Dleft%3A%208px%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Ah5%2C%20h6%20%7B%0A%20%20border%2Dbottom%3A%201px%20solid%20%23ccc%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%7D%0A%0Aa%20%7B%0A%20%20color%3A%20%230033dd%3B%0A%20%20text%2Ddecoration%3A%20none%3B%0A%7D%0A%20%20a%3Ahover%20%7B%0A%20%20%20%20color%3A%20%236666ff%3B%20%7D%0A%20%20a%3Avisited%20%7B%0A%20%20%20%20color%3A%20%23800080%3B%20%7D%0A%20%20a%3Avisited%3Ahover%20%7B%0A%20%20%20%20color%3A%20%23BB00BB%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%20%20a%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0A%20%20%20%20text%2Ddecoration%3A%20underline%3B%20%7D%0A%0A%2F%2A%20Class%20described%20in%20https%3A%2F%2Fbenjeffrey%2Ecom%2Fposts%2Fpandoc%2Dsyntax%2Dhighlighting%2Dcss%0A%20%20%20Colours%20from%20https%3A%2F%2Fgist%2Egithub%2Ecom%2Frobsimmons%2F1172277%20%2A%2F%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Keyword%20%2A%2F%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%2F%2A%20DataType%20%2A%2F%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%2F%2A%20DecVal%20%28decimal%20values%29%20%2A%2F%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20BaseN%20%2A%2F%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Float%20%2A%2F%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20Char%20%2A%2F%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%2F%2A%20String%20%2A%2F%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%2F%2A%20Comment%20%2A%2F%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%2F%2A%20OtherToken%20%2A%2F%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20AlertToken%20%2A%2F%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%2F%2A%20Function%20calls%20%2A%2F%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%2F%2A%20ErrorTok%20%2A%2F%0A%0A" rel="stylesheet" type="text/css" />
@@ -26,43 +52,107 @@
 
 
 <div id="header">
-<h1 class="title">Quick start with foRward</h1>
+<h1 class="title">Quick start with foRward: running simulations</h1>
 <h4 class="author"><em>Kevin Thornton</em></h4>
 <h4 class="date"><em>2015-01-14</em></h4>
 </div>
 
 
-<pre class="{r}"><code>library(Rcpp)
-library(foRward)
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This document shows how to run the function foRward::evolveStd, which simulates a Wright-Fisher population with mutations occurring according to the infinitely-many sites model.</p>
+<div id="random-numbers" class="section level2">
+<h2>Random numbers</h2>
+<p>One “quirk” of this package, at least compared to a standard R package, is that we have to deal with two different random number systems:</p>
+<ul>
+<li>R’s built-in system</li>
+<li>The <a href="http://www.gnu.org/software/gsl">GSL</a> system, whereby a pointer to a random number generator gets passed around. fwdpp uses this method, as that library is independent of R’s world.</li>
+</ul>
+<p>In foRward, we need to expose a pointer to a GSL random number generator to the R environment, which we do using Rcpp. foRward defines a class called GSLrng, which contains a smart pointer to a gsl_rng * type.</p>
+<p>From an R session, we can make ourselves an object representing a GSLrng:</p>
+<pre class="{r}"><code>#seed the gsl_rng * with a value of 0:
+GSL = makeGSLrng(0)</code></pre>
+<p>Users of foRward will have to pass that GSL to various functions.</p>
+</div>
+<div id="evolvestd" class="section level2">
+<h2>evolveStd</h2>
+<p>This function evolves a single population of <span class="math">\(N\)</span> diploids for an arbitrary number of generations, and allows for arbitrary changes in <span class="math">\(N\)</span> over time.</p>
+<p>The parameters of the function are:</p>
+<ul>
+<li>rng = An object wrapping a random number generator from the GNU Scientific Library (GSL), which is what <a href="http://molpopgen.github.io/fwdpp/">fwdpp</a> uses internally to sample from random number distributions</li>
+<li>N0 = the initial population size</li>
+<li>mu_n = the neutral mutation rate (per gamete, per generation)</li>
+<li>mu_s = the mutation rate to selected mutations (per gamete, per generation),</li>
+<li>s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)</li>
+<li>h The dominance of a selected mutation</li>
+<li>littler The recombination rate (per diploid, per generation).</li>
+<li>Ns A list of populaton sizes. The length of the list is the number of generations to simulate</li>
+<li>dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed</li>
+</ul>
+<p>The “Ns” option allows you to simulate arbitrary changes in population size over time.</p>
+<p>In population genetics, the scaled mutation and recombination rates are usually written as:</p>
+<p><span class="math">\[\theta = 4N\mu_s\]</span></p>
+<p>and</p>
+<p><span class="math">\[\rho = 4Nr,\]</span></p>
+<p>respectively, where the <span class="math">\(r\)</span> in the latter equation is the “littler” option passed to the function.</p>
+<p>Let us run a simulation of a population where <span class="math">\(N = 10^3\)</span>, <span class="math">\(\theta = 10\)</span>, <span class="math">\(\rho = 10\)</span>, for <span class="math">\(10N\)</span> generations with no selection:</p>
+<pre class="sourceCode r"><code class="sourceCode r">N=<span class="fl">1e3</span>
+theta=<span class="dv">10</span>
+rho=<span class="dv">10</span>
+pop =<span class="st"> </span><span class="kw">evolveStd</span>(GSL,N,<span class="dv">10</span>/(<span class="dv">4</span>*N),<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,rho/(<span class="dv">4</span>*N),<span class="kw">rep</span>(N,<span class="dv">10</span>*N))</code></pre>
+<p>The return value, “pop”, is an “external pointer” that points to the object representing the simulation output, which is stored of in C++-land. In order to access those data, “pop” must be passed to further functions exposed to R via Rcpp.</p>
+</div>
+<div id="samplestd" class="section level2">
+<h2>sampleStd</h2>
+<p>foRward provides a function for taking a sample of size <span class="math">\(n &lt; N\)</span> from a population. The parameters are the pointer to the population, the pointer to the GSL random number generator, <span class="math">\(n\)</span>, and, optionally, TRUE/FALSE telling the function to remove or keep fixed mutations, respectively:</p>
+<pre class="sourceCode r"><code class="sourceCode r">pop.sample =<span class="st"> </span><span class="kw">sampleStd</span>(pop,GSL,<span class="dv">10</span>);</code></pre>
+<p>pop.sample is a list containing:</p>
+<ul>
+<li>The positions of neutral mutations, a vector of length <span class="math">\(S_n\)</span></li>
+<li>The positions of selected mutation, a vector of length <span class="math">\(S_s\)</span></li>
+<li>An $n <span class="math">\(S_n\)</span> matrix of genotypes for mutations not affecting fitness: 0 = the ancestral state, 1 = the derived mutant state</li>
+<li>An $n <span class="math">\(S_s\)</span> matrix of genotypes for mutations affecting fitness: 0 = the ancestral state, 1 = the derived mutant state</li>
+</ul>
+<p>For the matrices, each pair of rows corresponds to 1 diploid individual.</p>
+</div>
+<div id="putting-it-all-together-the-site-frequency-spectrum" class="section level2">
+<h2>Putting it all together: the site frequency spectrum</h2>
+<p>The following code block estimates the expected site frequency spectrum for a sample of size <span class="math">\(n = 10\)</span> based on 100 replicates of simulating <span class="math">\(N=1,000\)</span> diploids for <span class="math">\(10N\)</span> generations with <span class="math">\(\theta = 40\)</span>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rcpp)
+<span class="kw">library</span>(foRward)
 
-sfs = array(dim=9,data=0)
+<span class="co">#The sfs has n-1 bins</span>
+sfs =<span class="st"> </span><span class="kw">array</span>(<span class="dt">dim=</span><span class="dv">9</span>,<span class="dt">data=</span><span class="dv">0</span>)
 
-N=1000
-NGENS=10*N
-NREPS=100
-popsizes=rep(N,NGENS)
+N=<span class="dv">1000</span>
+NGENS=<span class="dv">10</span>*N
+NREPS=<span class="dv">100</span>
+popsizes=<span class="kw">rep</span>(N,NGENS)
 
-#' You need to provide a random number generator to
-#' functions in foRward. Since fwdpp works via the GSL
-#' type gsl_rng *, we need a wrapper to one of those.
-#' The functions foRward::makeGLSrng returns an external
-#' pointer to one
-GSL = makeGSLrng(100);  #RNG seed object via GSL routines
-for(i in 1:NREPS)
+<span class="co">#' You need to provide a random number generator to</span>
+<span class="co">#' functions in foRward. Since fwdpp works via the GSL</span>
+<span class="co">#' type gsl_rng *, we need a wrapper to one of those.</span>
+<span class="co">#' The functions foRward::makeGLSrng returns an external</span>
+<span class="co">#' pointer to one</span>
+GSL =<span class="st"> </span><span class="kw">makeGSLrng</span>(<span class="dv">100</span>);  <span class="co">#RNG seed object via GSL routines</span>
+for(i in <span class="dv">1</span>:NREPS)
     {
-        #'x will be an Rcpp wrapper around an SEXP, which
-        #'is a pointer to external data used by the current R session
-        #'that pointer points to an object of type WFpop_std,
-        #'which is defined in standard_model.hpp
-        x=evolveStd(GSL,1000,0.01,0,0.1,0.5,0.0,popsizes)
-        x.sample = sampleStd(x,GSL,10);
-        for(j in 1:ncol(x.sample$neutral))
+        <span class="co">#'x will be an Rcpp wrapper around an SEXP, which</span>
+        <span class="co">#'is a pointer to external data used by the current R session</span>
+        <span class="co">#'that pointer points to an object of type WFpop_std,</span>
+        <span class="co">#'which is defined in standard_model.hpp</span>
+        x=<span class="kw">evolveStd</span>(GSL,<span class="dv">1000</span>,<span class="fl">0.01</span>,<span class="dv">0</span>,<span class="fl">0.0</span>,<span class="fl">0.0</span>,<span class="fl">0.0</span>,popsizes)
+    <span class="co">#' We pass TRUE to the function to remove fixed mutations</span>
+        x.sample =<span class="st"> </span><span class="kw">sampleStd</span>(x,GSL,<span class="dv">10</span>,<span class="ot">TRUE</span>);
+        for(j in <span class="dv">1</span>:<span class="kw">ncol</span>(x.sample$neutral))
             {
-                c = length(which(x.sample$neutral[,j]==1))
-                sfs[c] = sfs[c]+1
+                c =<span class="st"> </span><span class="kw">length</span>(<span class="kw">which</span>(x.sample$neutral[,j]==<span class="dv">1</span>))
+                sfs[c] =<span class="st"> </span>sfs[c]+<span class="dv">1</span>
             }
     }
-print(sfs/NREPS)</code></pre>
+<span class="kw">print</span>(sfs/NREPS)</code></pre>
+</div>
+</div>
 
 
 

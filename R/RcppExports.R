@@ -24,7 +24,6 @@ sampleStd <- function(pop, rng, nsam, remove_fixed = FALSE) {
 #' @param h The dominance of a selected mutation
 #' @param littler The recombination rate (per diploid, per generation). 
 #' @param Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
-#' @param seed Random number seed for the simulation
 #' @param dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
 evolveStd <- function(rng, N0, mu_n, mu_s, s, h, littler, Ns, dist = TRUE) {
     .Call('foRward_evolveStd', PACKAGE = 'foRward', rng, N0, mu_n, mu_s, s, h, littler, Ns, dist)

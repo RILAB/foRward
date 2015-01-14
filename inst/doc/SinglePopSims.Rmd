@@ -1,18 +1,101 @@
 ---
-title: "Quick start with foRward"
+title: "Quick start with foRward: running simulations"
 author: "Kevin Thornton"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Quick start with foRward: running simulations}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
 
-~~~{R}
+# Introduction
+
+This document shows how to run the function foRward::evolveStd, which simulates a Wright-Fisher population with mutations occurring according to the infinitely-many sites model.
+
+## Random numbers
+
+One "quirk" of this package, at least compared to a standard R package, is that we have to deal with two different random number systems:
+
+* R's built-in system
+* The [GSL](http://www.gnu.org/software/gsl) system, whereby a pointer to a random number generator gets passed around.  fwdpp uses this method, as that library is independent of R's world.
+
+In foRward, we need to expose a pointer to a GSL random number generator to the R environment, which we do using Rcpp.  foRward defines a class called GSLrng, which contains a smart pointer to a gsl_rng * type.
+
+From an R session, we can make ourselves an object representing a GSLrng:
+
+~~~{r}
+#seed the gsl_rng * with a value of 0:
+GSL = makeGSLrng(0)
+~~~
+
+Users of foRward will have to pass that GSL to various functions.
+
+## evolveStd
+
+This function evolves a single population of $N$ diploids for an arbitrary number of generations, and allows for arbitrary changes in $N$ over time.
+
+The parameters of the function are:
+
+* rng = An object wrapping a random number generator from the GNU Scientific Library (GSL), which is what [fwdpp](http://molpopgen.github.io/fwdpp/) uses internally to sample from random number distributions
+* N0 = the initial population size
+* mu_n = the neutral mutation rate (per gamete, per generation)
+* mu_s = the mutation rate to selected mutations (per gamete, per generation),
+* s The selection coefficient (for fixed-s models), or the mean of an exponential (for models with a distribution)
+* h The dominance of a selected mutation
+* littler The recombination rate (per diploid, per generation). 
+* Ns A list of populaton sizes.  The length of the list is the number of generations to simulate
+* dist If true, simulate a distribution of fitness effects, otherwise treat s as fixed
+
+The "Ns" option allows you to simulate arbitrary changes in population size over time.
+
+In population genetics, the scaled mutation and recombination rates are usually written as:
+
+$$\theta = 4N\mu_s$$
+
+and
+
+$$\rho = 4Nr,$$
+
+respectively, where the $r$ in the latter equation is the "littler" option passed to the function.
+
+Let us run a simulation of a population where $N = 10^3$, $\theta = 10$, $\rho = 10$, for $10N$ generations with no selection:
+
+~~~{.r}
+N=1e3
+theta=10
+rho=10
+pop = evolveStd(GSL,N,10/(4*N),0,0,0,rho/(4*N),rep(N,10*N))
+~~~
+
+The return value, "pop", is an "external pointer" that points to the object representing the simulation output, which is stored of in C++-land.  In order to access those data, "pop" must be passed to further functions exposed to R via Rcpp.
+
+## sampleStd
+
+foRward provides a function for taking a sample of size $n < N$ from a population.  The parameters are the pointer to the population, the pointer to the GSL random number generator, $n$, and, optionally, TRUE/FALSE telling the function to remove or keep fixed mutations, respectively:
+
+~~~{.r}
+pop.sample = sampleStd(pop,GSL,10);
+~~~
+
+pop.sample is a list containing:
+
+* The positions of neutral mutations, a vector of length $S_n$
+* The positions of selected mutation, a vector of length $S_s$
+* An $n \times $S_n$ matrix of genotypes for mutations not affecting fitness: 0 = the ancestral state, 1 = the derived mutant state
+* An $n \times $S_s$ matrix of genotypes for mutations affecting fitness: 0 = the ancestral state, 1 = the derived mutant state
+
+For the matrices, each pair of rows corresponds to 1 diploid individual.
+
+## Putting it all together: the site frequency spectrum
+
+The following code block estimates the expected site frequency spectrum for a sample of size $n = 10$ based on 100 replicates of simulating $N=1,000$ diploids for $10N$ generations with $\theta = 40$:
+
+~~~{.r}
 library(Rcpp)
 library(foRward)
 
+#The sfs has n-1 bins
 sfs = array(dim=9,data=0)
 
 N=1000
@@ -32,8 +115,9 @@ for(i in 1:NREPS)
         #'is a pointer to external data used by the current R session
         #'that pointer points to an object of type WFpop_std,
         #'which is defined in standard_model.hpp
-        x=evolveStd(GSL,1000,0.01,0,0.1,0.5,0.0,popsizes)
-        x.sample = sampleStd(x,GSL,10);
+        x=evolveStd(GSL,1000,0.01,0,0.0,0.0,0.0,popsizes)
+	#' We pass TRUE to the function to remove fixed mutations
+        x.sample = sampleStd(x,GSL,10,TRUE);
         for(j in 1:ncol(x.sample$neutral))
             {
                 c = length(which(x.sample$neutral[,j]==1))

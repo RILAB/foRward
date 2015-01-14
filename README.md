@@ -1,5 +1,40 @@
 # foRward: forward simulation in R using fwdpp
 
+This package is a testing ground for providing access to efficient forward-time population simulation machinery in R.
+
+The specific goals are:
+
+1.  Provide some useful routines that allow users to easily perform simulations under standard modeling scenarios.  This part of the package is a "regular" R package that provides functions that a user may find useful.
+2.  Provide a mechanism by which a user may extend the package, and thereby simulate under other models within R.  This part of the package provides an interface for the development of additional Rcpp/fwdpp-based packages so that "power users".
+
+The hope is that both aspects of the package evolve in tandem.
+
+This package is implemented in terms of:
+
+1. [Rcpp](http://cran.r-project.org/web/packages/Rcpp/index.html), which is an R package to streamline the exposure of methods implemented in C++ to R.
+2. [fwdpp](http://molpopgen.github.io/fwdpp/), which is a C++11 template library for implementing efficient population genetic simulations
+## What does the package do?
+
+Now, as of version 0.0.1, the answer is "not much" in terms of meeting goal number 1.  So far, the library provides three functions:
+
+1. evolveStd evolves a single Wright-Fisher population under the "standard" (or perhaps "default") model used in population genetics: fixed selection and dominance coefficients assigned to mutations, fitnesses are multiplicative across mutations, mutations arise according to an infinitely-many sites process and recombination occurs uniformly along a genomic region
+2. sampleStd samples a sample of size n from a population of N diploids simulated by evolveStd, and returns a list of genotypes.
+
+Based on the above, a user can actually do quite a bit, as evolveStd allows the simulation of arbitrary changes in N over time.
+
+Progress on goal number two has resulted in:
+
+1. A relatively simple method to generate new single-population simulations.  Some programmers may find this approach preferable to writing standalone C++ programs based on fwdpp.
+2. Proof-of-principle that fwdpp functions can be made available to an Rcpp-based package based on further abstraction using C++ templates.
+
+The package installs a bunch of headers that define a C++ namespace called foRward.  As with Rcpp, these headers are intalled into the bowels of an R installation.  Unlike Rcpp, I have done no testing to show that it is even possible to include those headers in a package derived from this one, but we're at version 0.0.1 here, right?
+
+##Availability
+
+This package is distributed at the following github repository: https://github.com/molpopgen/foRward.
+
+This package is not (yet) available through CRAN, which does not allow the submission of C++11-based packages (yet).
+
 ##Dependencies
 
 A lot of them:
@@ -53,3 +88,8 @@ browseVignettes("foRward")
 ~~~
 
 The vignettes are HTML, so you must be on a system where your browser can be accessed by R.
+
+## Development pseudo-roadmap
+
+1. Expose more fwdpp functionality to namespace foRward.
+2. Expand the capabilities of simulation under the "standard" model to show what can be done in this environment.

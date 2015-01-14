@@ -6,6 +6,8 @@
 evolveStd(rng, N0, mu_n, mu_s, s, h, littler, Ns, dist = TRUE)
 }
 \arguments{
+\item{rng}{A wrapper to a GSL random number generator}
+
 \item{N0}{The initial population size}
 
 \item{mu_n}{The neutral mutation rate (per gamete per generation)}
@@ -21,8 +23,6 @@ evolveStd(rng, N0, mu_n, mu_s, s, h, littler, Ns, dist = TRUE)
 \item{dist}{If true, simulate a distribution of fitness effects, otherwise treat s as fixed}
 
 \item{mu_n}{The mutation rate to selected mutations (per gamete per generation)}
-
-\item{seed}{Random number seed for the simulation}
 }
 \description{
 Evolve a single population under multiplicative fitness and arbitrary changes in N

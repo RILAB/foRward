@@ -1,6 +1,7 @@
 library(Rcpp)
 library(foRward)
 
+#The sfs has n-1 bins
 sfs = array(dim=9,data=0)
 
 N=1000
@@ -20,8 +21,9 @@ for(i in 1:NREPS)
         #'is a pointer to external data used by the current R session
         #'that pointer points to an object of type WFpop_std,
         #'which is defined in standard_model.hpp
-        x=evolveStd(GSL,1000,0.01,0,0.1,0.5,0.0,popsizes)
-        x.sample = sampleStd(x,GSL,10);
+        x=evolveStd(GSL,1000,0.01,0,0.0,0.0,0.0,popsizes)
+	#' We pass TRUE to the function to remove fixed mutations
+        x.sample = sampleStd(x,GSL,10,TRUE);
         for(j in 1:ncol(x.sample$neutral))
             {
                 c = length(which(x.sample$neutral[,j]==1))
