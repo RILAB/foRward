@@ -22,6 +22,7 @@ Rcpp::List sampleStd( SEXP pop, SEXP rng,
 }
 
 //' Evolve a single population under multiplicative fitness and arbitrary changes in N
+//' @param rng A wrapper to a GSL random number generator
 //' @param N0 The initial population size
 //' @param mu_n The neutral mutation rate (per gamete per generation)
 //' @param mu_n The mutation rate to selected mutations (per gamete per generation)
