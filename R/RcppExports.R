@@ -8,10 +8,10 @@ makeGSLrng <- function(seed) {
 
 #' Sample nsam chromosomes from population
 #' @param pop A population returned from evolve_std
+#' @param rng A GSLrng
 #' @param nsam The sample size
-#' @param seed RNG seed
-sampleStd <- function(pop, rng, nsam, seed) {
-    .Call('foRward_sampleStd', PACKAGE = 'foRward', pop, rng, nsam, seed)
+sampleStd <- function(pop, rng, nsam) {
+    .Call('foRward_sampleStd', PACKAGE = 'foRward', pop, rng, nsam)
 }
 
 #' Evolve a single population under multiplicative fitness and arbitrary changes in N

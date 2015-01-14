@@ -9,12 +9,12 @@ template class SinglePop<popgenmut>;
 
 //' Sample nsam chromosomes from population
 //' @param pop A population returned from evolve_std
+//' @param rng A GSLrng
 //' @param nsam The sample size
-//' @param seed RNG seed
 // [[Rcpp::export]]
 Rcpp::List sampleStd( SEXP pop, SEXP rng,
-		      const unsigned & nsam,
-		      const unsigned long & seed)
+		      const unsigned & nsam
+		      )
 {
   Rcpp::XPtr<WFpop_std> ppop(pop);
   Rcpp::XPtr<GSLrng> r(rng);

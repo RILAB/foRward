@@ -21,8 +21,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // sampleStd
-Rcpp::List sampleStd(SEXP pop, SEXP rng, const unsigned& nsam, const unsigned long& seed);
-RcppExport SEXP foRward_sampleStd(SEXP popSEXP, SEXP rngSEXP, SEXP nsamSEXP, SEXP seedSEXP) {
+Rcpp::List sampleStd(SEXP pop, SEXP rng, const unsigned& nsam);
+RcppExport SEXP foRward_sampleStd(SEXP popSEXP, SEXP rngSEXP, SEXP nsamSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -30,8 +30,7 @@ BEGIN_RCPP
         Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
         Rcpp::traits::input_parameter< SEXP >::type rng(rngSEXP );
         Rcpp::traits::input_parameter< const unsigned& >::type nsam(nsamSEXP );
-        Rcpp::traits::input_parameter< const unsigned long& >::type seed(seedSEXP );
-        Rcpp::List __result = sampleStd(pop, rng, nsam, seed);
+        Rcpp::List __result = sampleStd(pop, rng, nsam);
         PROTECT(__sexp_result = Rcpp::wrap(__result));
     }
     UNPROTECT(1);
