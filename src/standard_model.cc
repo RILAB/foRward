@@ -76,12 +76,12 @@ SEXP evolveStd(SEXP rng,
   for( const auto & nextN : Ns )
     {
       double wbar = KTfwd::sample_diploid(prng->r.get(),
-					  &ppop->gametes,  //non-const pointer to gametes
-					  &ppop->diploids, //non-const pointer to diploids
+					  &ppop->gametes,   //non-const pointer to gametes
+					  &ppop->diploids,  //non-const pointer to diploids
 					  &ppop->mutations, //non-const pointer to mutations
-					  ppop->N,     //current pop size
-					  nextN,       //pop size in next gen
-					  mu_n+mu_s,    //mutation rate per gamete
+					  ppop->N,          //current pop size
+					  nextN,            //pop size in next gen
+					  mu_n+mu_s,        //mutation rate per gamete
 					  /*
 					    The mutation model (defined above) will pass each gamete
 					    to be mutated to the mutation model function.  Again, _1
