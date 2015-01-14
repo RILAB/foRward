@@ -29,6 +29,8 @@ Progress on goal number two has resulted in:
 
 The package installs a bunch of headers that define a C++ namespace called foRward.  As with Rcpp, these headers are intalled into the bowels of an R installation.  Unlike Rcpp, I have done no testing to show that it is even possible to include those headers in a package derived from this one, but we're at version 0.0.1 here, right?
 
+There is currently no documentation of namespace foRward, but you can look at the header files in inst/include/foRward in the source repository.
+
 ##Availability
 
 This package is distributed at the following github repository: https://github.com/molpopgen/foRward.
