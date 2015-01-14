@@ -21,7 +21,7 @@ for(i in 1:NREPS)
         #'that pointer points to an object of type WFpop_std,
         #'which is defined in standard_model.hpp
         x=evolveStd(GSL,1000,0.01,0,0.1,0.5,0.0,popsizes)
-        x.sample = sampleStd(x,10,0);
+        x.sample = sampleStd(x,10,GSL);
         for(j in 1:ncol(x.sample$neutral))
             {
                 c = length(which(x.sample$neutral[,j]==1))
