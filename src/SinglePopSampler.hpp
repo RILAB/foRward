@@ -1,8 +1,8 @@
 #include <SinglePop.hpp>
 #include <Rcpp.h>
 #include <fwdpp/sampling_functions.hpp>
-template<typename poptype>
 
+template<typename poptype>
 Rcpp::List SinglePopSampler( SEXP pop, SEXP rng,
 			     const unsigned & nsam )
 {
