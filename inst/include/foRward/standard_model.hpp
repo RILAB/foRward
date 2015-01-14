@@ -1,8 +1,8 @@
 #ifndef __FORWARD_WFSINGLE_HPP__
 #define __FORWARD_WFSINGLE_HPP__
 
-#include <SinglePop.hpp>
-#include <popgenmut.hpp>
+#include <foRward/SinglePop.hpp>
+#include <foRward/popgenmut.hpp>
 
 //Single Wright-Fisher pop, mutations have an s and h associated with them
 //This using declaration is an template alias/typedef

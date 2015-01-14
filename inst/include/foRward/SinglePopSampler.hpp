@@ -1,4 +1,4 @@
-#include <SinglePop.hpp>
+//#include <SinglePop.hpp>
 #include <Rcpp.h>
 #include <fwdpp/sampling_functions.hpp>
 

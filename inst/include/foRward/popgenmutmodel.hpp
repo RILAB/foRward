@@ -4,7 +4,7 @@
   Generate popgenmuts under the infinitely-many sites mutation schemt
  */
 
-#include <popgenmut.hpp>
+#include <foRward/popgenmut.hpp>
 
 struct popgen_mutation_model
 {

@@ -1,11 +1,11 @@
-#include <standard_model.hpp>
+#include <foRward/standard_model.hpp>
 template class SinglePop<popgenmut>; //This forces the compiler to generate the type
 #include <Rcpp.h>
-#include <gslutils.hpp>
+#include <foRward/gslutils.hpp>
 #include <fwdpp/diploid.hh>
 #include <algorithm>
-#include <popgenmutmodel.hpp>
-#include <SinglePopSampler.hpp>
+#include <foRward/popgenmutmodel.hpp>
+#include <foRward/SinglePopSampler.hpp>
 // [[Rcpp::plugins(cpp11)]]
 
 //' Sample nsam chromosomes from population
