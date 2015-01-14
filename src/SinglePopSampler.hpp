@@ -2,14 +2,16 @@
 #include <Rcpp.h>
 #include <fwdpp/sampling_functions.hpp>
 
+//TODO: use fixations list to add in all of them!  BUG
 template<typename poptype>
 Rcpp::List SinglePopSampler( SEXP pop, SEXP rng,
-			     const unsigned & nsam )
+			     const unsigned & nsam,
+			     const bool & remove_fixed = false)
 {
   Rcpp::XPtr<poptype> ppop(pop);
   Rcpp::XPtr<GSLrng> r(rng);
 
-  auto __sample = KTfwd::ms_sample_separate(r->r.get(),&ppop->diploids,nsam);
+  auto __sample = KTfwd::ms_sample_separate(r->r.get(),&ppop->diploids,nsam,remove_fixed);
 
   Rcpp::IntegerMatrix n((!__sample.first.empty())?nsam:0,__sample.first.size()),
     s((!__sample.second.empty())?nsam:0,__sample.second.size());
