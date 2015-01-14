@@ -2,6 +2,17 @@
 #include <Rcpp.h>
 #include <fwdpp/sampling_functions.hpp>
 
+/*
+  This file provides a templated abstraction
+  of the operation of taking a sample of size n 
+  from a larter population of N diploids.
+
+  The implementation is via a call to the fwdpp function,
+  and then we convert the data to Rcpp types, which is a wee 
+  bit inefficient, but it it what we have to do.
+
+  For a use example, see samplStd in standard_model.cc
+ */
 //TODO: use fixations list to add in all of them!  BUG
 template<typename poptype>
 Rcpp::List SinglePopSampler( SEXP pop, SEXP rng,
