@@ -17,4 +17,7 @@ sampleStd(pop, rng, nsam, remove_fixed = FALSE)
 \description{
 Sample nsam chromosomes from population
 }
+\note{
+If nsam > the population size, an empty list is returned
+}
 

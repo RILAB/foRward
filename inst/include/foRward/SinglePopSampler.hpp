@@ -22,6 +22,11 @@ namespace foRward {
 			       const bool & remove_fixed = false)
   {
     Rcpp::XPtr<poptype> ppop(pop);
+    if( nsam > ppop->N )
+      {
+	Rcpp::Rcerr << "error: sample size larger than number of diploids.  Returning empty list\n";
+	return Rcpp::List::create();
+      }
     Rcpp::XPtr<GSLrng> r(rng);
 
     auto __sample = KTfwd::ms_sample_separate(r->r.get(),&ppop->diploids,nsam,remove_fixed);

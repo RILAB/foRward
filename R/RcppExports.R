@@ -11,6 +11,7 @@ makeGSLrng <- function(seed) {
 #' @param rng A GSLrng
 #' @param nsam The sample size
 #' @param remove_fixed If TRUE, do not include mutations fixed in the sample in the output.  Default is to include fixations
+#' @note If nsam > the population size, an empty list is returned
 sampleStd <- function(pop, rng, nsam, remove_fixed = FALSE) {
     .Call('foRward_sampleStd', PACKAGE = 'foRward', pop, rng, nsam, remove_fixed)
 }

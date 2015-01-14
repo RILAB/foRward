@@ -13,6 +13,7 @@ template class foRward::SinglePop<foRward::popgenmut>; //This forces the compile
 //' @param rng A GSLrng
 //' @param nsam The sample size
 //' @param remove_fixed If TRUE, do not include mutations fixed in the sample in the output.  Default is to include fixations
+//' @note If nsam > the population size, an empty list is returned
 // [[Rcpp::export]]
 Rcpp::List sampleStd( SEXP pop, SEXP rng,
 		      const unsigned & nsam,
@@ -42,8 +43,13 @@ SEXP evolveStd(SEXP rng,
 	       const Rcpp::IntegerVector & Ns,
 	       const bool & dist = true)
 {
-  Rcpp::XPtr<GSLrng> prng(rng);
   using foRward::WFpop_std;
+  if( std::find_if(Ns.begin(),Ns.end(),[]( const Rcpp::IntegerVector::value_type & __N ) { return __N <= 0; } ) != Ns.end() )
+    {
+      Rcpp::Rcerr << "error: population size <= 0 input.  Returning empty population\n";
+      return Rcpp::XPtr<WFpop_std>(new WFpop_std(0));
+    }
+  Rcpp::XPtr<GSLrng> prng(rng);
   Rcpp::XPtr<WFpop_std> ppop(new WFpop_std(N0));
 
   //define the genetic map
