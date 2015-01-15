@@ -16,11 +16,12 @@
 //TODO: use fixations list to add in all of them!  BUG
 
 namespace foRward {
-  template<typename poptype>
+  template<typename mutation_type>
   Rcpp::List SinglePopSampler( SEXP pop, SEXP rng,
 			       const unsigned & nsam,
 			       const bool & remove_fixed = false)
   {
+    using poptype = SinglePop<mutation_type>;
     Rcpp::XPtr<poptype> ppop(pop);
     if( nsam > ppop->N )
       {

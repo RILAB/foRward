@@ -23,7 +23,7 @@ Rcpp::List sampleStd( SEXP pop, SEXP rng,
 		      const unsigned & nsam,
 		      const bool & remove_fixed = false)
 {
-  return foRward::SinglePopSampler<foRward::WFpop_std>(pop,rng,nsam,remove_fixed);
+  return foRward::SinglePopSampler<foRward::popgenmut>(pop,rng,nsam,remove_fixed);
 }
 
 //' Evolve a single population under multiplicative fitness and arbitrary changes in N
