@@ -13,6 +13,7 @@
   so we cheat a little and directly include the relevant header
 */
 #include <fwdpp/forward_types.hpp>
+#include <iosfwd>
 
 namespace foRward {
   struct popgenmut : public KTfwd::mutation_base
@@ -32,6 +33,22 @@ namespace foRward {
     {
       //For efficiency, try not to initialize the data here!
     }
+  };
+
+  /*
+    The function objects below allow an object of type popgenmut to be serialized to/from binary
+    ouptut/input streams.
+  */
+  struct popgenMutWriter
+  {
+    typedef void result_type;
+    result_type operator()( const popgenmut & m, std::ostream & buffer ) const;
+  };
+
+  struct popgenMutReader
+  {
+    typedef popgenmut result_type;
+    result_type operator()( std::istream & buffer ) const;
   };
 }
 #endif
