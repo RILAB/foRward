@@ -6,6 +6,8 @@ template class foRward::SinglePop<foRward::popgenmut>; //This forces the compile
 #include <algorithm>
 #include <foRward/popgenmutmodel.hpp>
 #include <foRward/SinglePopSampler.hpp>
+#include <foRward/SinglePopSerialization.hpp>
+#include <fstream>
 // [[Rcpp::plugins(cpp11)]]
 
 //' Sample nsam chromosomes from population
@@ -131,4 +133,11 @@ SEXP evolveStd(SEXP rng,
       ppop->N = nextN;
     }
   return ppop;
+}
+
+unsigned long writeStd( SEXP pop,
+			const char * filename )
+{
+  std::ofstream o(filename);
+  foRward::SerializeSinglePop<foRward::popgenmut>()(pop,foRward::popgenMutWriter(),o);
 }
