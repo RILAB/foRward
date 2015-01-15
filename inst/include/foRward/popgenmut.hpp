@@ -38,6 +38,9 @@ namespace foRward {
   /*
     The function objects below allow an object of type popgenmut to be serialized to/from binary
     ouptut/input streams.
+
+    The function objects are non-template, and the definition of their operator()
+    are found in popgenmut.cc
   */
   struct popgenMutWriter
   {
