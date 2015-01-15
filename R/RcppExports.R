@@ -30,3 +30,8 @@ evolveStd <- function(rng, N0, mu_n, mu_s, s, h, littler, Ns, dist = TRUE) {
     .Call('foRward_evolveStd', PACKAGE = 'foRward', rng, N0, mu_n, mu_s, s, h, littler, Ns, dist)
 }
 
+#' Write simulation output to a file
+writeStdToFile <- function(pop, filename, append = FALSE, lock = FALSE) {
+    .Call('foRward_writeStdToFile', PACKAGE = 'foRward', pop, filename, append, lock)
+}
+

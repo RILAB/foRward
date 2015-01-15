@@ -61,3 +61,21 @@ BEGIN_RCPP
     return __sexp_result;
 END_RCPP
 }
+// writeStdToFile
+unsigned long writeStdToFile(SEXP pop, const char * filename, const bool append = false, const bool lock = false);
+RcppExport SEXP foRward_writeStdToFile(SEXP popSEXP, SEXP filenameSEXP, SEXP appendSEXP, SEXP lockSEXP) {
+BEGIN_RCPP
+    SEXP __sexp_result;
+    {
+        Rcpp::RNGScope __rngScope;
+        Rcpp::traits::input_parameter< SEXP >::type pop(popSEXP );
+        Rcpp::traits::input_parameter< const char * >::type filename(filenameSEXP );
+        Rcpp::traits::input_parameter< const bool >::type append(appendSEXP );
+        Rcpp::traits::input_parameter< const bool >::type lock(lockSEXP );
+        unsigned long __result = writeStdToFile(pop, filename, append, lock);
+        PROTECT(__sexp_result = Rcpp::wrap(__result));
+    }
+    UNPROTECT(1);
+    return __sexp_result;
+END_RCPP
+}
